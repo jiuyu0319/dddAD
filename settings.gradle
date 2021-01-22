@@ -1,0 +1,3 @@
+include ':dddad'
+include ':app'
+rootProject.name = "ad"

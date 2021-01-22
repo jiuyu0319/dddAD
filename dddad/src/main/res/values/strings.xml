@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="google_test_bannerid">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="google_test_interstitial">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="google_test_nativead">ca-app-pub-3940256099942544/2247696110</string>
+    <string name="google_test_rewardedad">ca-app-pub-3940256099942544/5224354917</string>
+
+<!--    华为开屏-->
+    <string name="ad_id_splash">testq6zq98hecj</string>
+    <string name="owner">HUAWEI Developer</string>
+    <string name="copyright_info">Copyright 2020. Huawei Technologies Co., Ltd</string>
+    <string name="status_load_ad_success">Ad loading state: loaded successfully.</string>
+    <string name="status_load_ad_fail">Ad loading state: failed to be loaded. Error code: </string>
+    <string name="status_ad_dismissed">Ad is dismissed.</string>
+</resources>
