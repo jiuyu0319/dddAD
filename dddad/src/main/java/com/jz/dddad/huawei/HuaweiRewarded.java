@@ -24,9 +24,8 @@ public class HuaweiRewarded {
      * @param ok  可领取奖励回调
      * @return
      */
-    public HuaweiRewarded init(Activity context, OnAdErrorAndClosed no, OnAdErrorAndClosed ok) {
+    public void init(Activity context, OnAdErrorAndClosed no, OnAdErrorAndClosed ok) {
         init(context, "testx9dtjwj8hp", no, ok);
-        return this;
     }
     /**|
      *
@@ -35,7 +34,7 @@ public class HuaweiRewarded {
      * @param ok  可领取奖励回调
      * @return
      */
-    public HuaweiRewarded init(Activity context, String code, OnAdErrorAndClosed no, OnAdErrorAndClosed ok) {
+    public void init(Activity context, String code, OnAdErrorAndClosed no, OnAdErrorAndClosed ok) {
         this.activity = context;
         this.no = no;
         this.ok = ok;
@@ -44,13 +43,9 @@ public class HuaweiRewarded {
         }
 
         rewardAd.loadAd(new AdParam.Builder().build(), listener);
-        return this;
     }
-    public HuaweiRewarded rewardAdShow() {
-        rewardAdShow(null);
-        return this;
-    }
-    public HuaweiRewarded rewardAdShow(OnAdErrorAndClosed oks) {
+
+    public void rewardAdShow(OnAdErrorAndClosed oks) {
         if (rewardAd.isLoaded()) {
             rewardAd.show(activity, new RewardAdStatusListener() {
                 @Override
@@ -82,7 +77,37 @@ public class HuaweiRewarded {
                 }
             });
         }
-        return this;
+    }
+    public void rewardAdShow() {
+        if (rewardAd.isLoaded()) {
+            rewardAd.show(activity, new RewardAdStatusListener() {
+                @Override
+                public void onRewardAdOpened() {
+                    // 激励广告被打开
+                }
+
+                @Override
+                public void onRewardAdFailedToShow(int errorCode) {
+                    // 激励广告展示失败
+                }
+
+                @Override
+                public void onRewardAdClosed() {
+                    // 激励广告被关闭
+                    Log.d("华为激励广告展示成功之后关闭", "onRewardAdClosed");
+                    rewardAd.loadAd(new AdParam.Builder().build(), listener);
+                    no.errorAndClosed();
+                }
+
+                @Override
+                public void onRewarded(Reward reward) {
+                    // 激励广告奖励达成，发放奖励
+                    ok.errorAndClosed();
+                    Log.d("华为激励广告展示成功", "onRewarded: 发放奖励");
+
+                }
+            });
+        }
     }
     RewardAdLoadListener listener = new RewardAdLoadListener() {
         @Override

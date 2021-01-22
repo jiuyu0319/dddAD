@@ -76,5 +76,57 @@ public class HuaweiHengFUAD {
         bannerView.setBannerRefresh(30);
         bannerView.loadAd(new AdParam.Builder().build());
     }
+    public void getBannerView(FrameLayout adFrameLayout, Context context, String adid){
+
+        BannerView bannerView = new BannerView(context);
+        // Set an ad slot ID.
+        bannerView.setAdId(adid);
+        // Set the background color and size based on user selection.
+        BannerAdSize adSize = BannerAdSize.BANNER_SIZE_320_50;
+        bannerView.setBannerAdSize(adSize);
+
+        bannerView.setBackgroundColor(Color.WHITE);
+        adFrameLayout.addView(bannerView);
+        bannerView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Called when an ad is loaded successfully.
+            }
+
+            @Override
+            public void onAdFailed(int errorCode) {
+                // Called when an ad fails to be loaded.
+
+                Log.d("华为广告 onAdFailed",errorCode+"");
+
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Called when an ad is opened.
+                //showToast(String.format("Ad opened "));
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Called when a user taps an ad.
+//            showToast("Ad clicked");
+            }
+
+            @Override
+            public void onAdLeave() {
+                // Called when a user has left the app.
+                //showToast("Ad Leave");
+            }
+
+            @Override
+            public void onAdClosed() {
+                Log.d("华为广告 onAdClosed","onAdClosed");
+
+            }
+        } );
+        bannerView.setBannerRefresh(30);
+        bannerView.loadAd(new AdParam.Builder().build());
+    }
 
 }

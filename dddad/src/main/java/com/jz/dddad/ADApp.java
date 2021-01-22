@@ -11,6 +11,7 @@ import com.jz.dddad.google.AppOpenManager;
  */
 public class ADApp extends Application {
     public static AppOpenManager appOpenManager;
+    public static boolean isHuawei = false;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -18,9 +19,11 @@ public class ADApp extends Application {
         String brand = android.os.Build.BRAND;
         if (brand.equals("Huawei")||brand.equals("HUAWEI")||brand.equals("HONOR")){
             HwAds.init(this);
+            isHuawei = true;
         } else {
             MobileAds.initialize(this);
             appOpenManager =  new AppOpenManager(this); // 开屏广告
+            isHuawei = false;
         }
     }
 }
