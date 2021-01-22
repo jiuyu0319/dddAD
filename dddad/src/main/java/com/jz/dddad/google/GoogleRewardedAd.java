@@ -51,7 +51,7 @@ public class GoogleRewardedAd {
 
 
     }
-    public void showAD(OnAdErrorAndClosed ok){
+    public void showAD(){
         rewardedAd.show(activity, new RewardedAdCallback() {
             @Override
             public void onRewardedAdOpened() {
