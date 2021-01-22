@@ -42,6 +42,7 @@ public abstract class HuaweiSplashAD extends AppCompatActivity {
     protected Object adimg; // 开屏页下面展示的logo
     protected String ad_des;//开屏页下面展示的名称
     protected String ad_desc;//开屏页下面展示的版本号
+    protected int adbac;//广告背景图
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,7 +85,7 @@ public abstract class HuaweiSplashAD extends AppCompatActivity {
      * 按返回键退出应用时需设置为true，以确保应用主界面不被拉起；
      * 从其他页面回到开屏广告页面时需设置为false，以确保仍然可以正常跳转至应用主界面。
      */
-    private boolean hasPaused = false;
+    protected boolean hasPaused = false;
 
     // 广告展示超时消息回调handler
     private Handler timeoutHandler = new Handler(new Handler.Callback() {
@@ -157,7 +158,11 @@ public abstract class HuaweiSplashAD extends AppCompatActivity {
         AdParam adParam = new AdParam.Builder().build();
         splashView = findViewById(R.id.splash_ad_view);
         splashView.setAdDisplayListener(adDisplayListener);
+        //设置背景图
+        if (adbac>0){
+            splashView.setSloganResId(adbac);
 
+        }
         // 设置logo图片
         splashView.setLogoResId(adlogo);
         // 设置logo描述
@@ -178,7 +183,7 @@ public abstract class HuaweiSplashAD extends AppCompatActivity {
      * 广告展示完毕时，从广告界面跳转至应用主界面
      */
 
-    private void jump() {
+    protected void jump() {
         Log.i(TAG, "jump hasPaused: " + hasPaused);
         if (!hasPaused) {
             hasPaused = true;
