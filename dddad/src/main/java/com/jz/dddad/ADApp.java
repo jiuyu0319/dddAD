@@ -14,9 +14,13 @@ public class ADApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        MobileAds.initialize(this);
-        appOpenManager =  new AppOpenManager(this); // 开屏广告
-//        华为广告初始化
-        HwAds.init(this);
+
+        String brand = android.os.Build.BRAND;
+        if (brand.equals("Huawei")||brand.equals("HUAWEI")||brand.equals("HONOR")){
+            HwAds.init(this);
+        } else {
+            MobileAds.initialize(this);
+            appOpenManager =  new AppOpenManager(this); // 开屏广告
+        }
     }
 }
