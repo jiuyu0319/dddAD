@@ -28,7 +28,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
     private static  String AD_UNIT_ID = ""; // 测试开屏
     private AppOpenAd appOpenAd = null;
     private AppOpenAd.AppOpenAdLoadCallback loadCallback;
-    private final ADApp myApplication;
+    private final Application myApplication;
     public static boolean isShowingAd = false;
     private long loadTime = 0;
 
@@ -66,7 +66,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
         }
     }
     /** Constructor */
-    public AppOpenManager(ADApp myApplication,String AD_UNIT_ID) {
+    public AppOpenManager(Application myApplication,String AD_UNIT_ID) {
         this.AD_UNIT_ID = AD_UNIT_ID;
         this.myApplication = myApplication;
         this.myApplication.registerActivityLifecycleCallbacks(this);
@@ -74,7 +74,7 @@ public class AppOpenManager implements Application.ActivityLifecycleCallbacks, L
 
     }
     /** Constructor */
-    public AppOpenManager(ADApp myApplication) {
+    public AppOpenManager(Application myApplication) {
         this.myApplication = myApplication;
 
 
