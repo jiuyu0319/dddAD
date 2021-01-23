@@ -1,4 +1,11 @@
 package com.jz.dddad;
 
-public class TestApp {
+import com.huawei.hms.ads.App;
+
+public class TestApp extends ADApp {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+    }
 }
