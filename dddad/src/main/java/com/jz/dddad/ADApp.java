@@ -15,7 +15,6 @@ public class ADApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         String brand = android.os.Build.BRAND;
         if (brand.equals("Huawei")||brand.equals("HUAWEI")||brand.equals("HONOR")){
             HwAds.init(this);
