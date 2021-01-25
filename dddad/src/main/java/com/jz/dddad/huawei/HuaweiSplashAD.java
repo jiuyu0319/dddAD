@@ -54,9 +54,11 @@ public abstract class HuaweiSplashAD extends AppCompatActivity {
         fl_root = findViewById(R.id.fl_rootview);
         logo = findViewById(R.id.logo);
         splash_ad_view = findViewById(R.id.splash_ad_view);
-        init();
-        boolean huaweiAd = loadHuaweiAd();
-        if (huaweiAd){
+
+
+    }
+    protected void initHuaweiSplashAd(boolean isloadHuawei){
+        if (isloadHuawei){
             loadAd();
             fl_root.setVisibility(View.GONE);
             logo.setVisibility(View.VISIBLE);
@@ -66,7 +68,6 @@ public abstract class HuaweiSplashAD extends AppCompatActivity {
             logo.setVisibility(View.GONE);
             splash_ad_view.setVisibility(View.GONE);
         }
-
     }
     protected abstract void init();
     protected abstract boolean loadHuaweiAd();
