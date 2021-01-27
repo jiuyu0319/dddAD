@@ -20,14 +20,26 @@ import com.jz.dddad.R;
 
 public class HuaweiNativeAd {
     private int type;
-    public void loadAd(Activity activity, FrameLayout frameLayout, String adId,int type) {
-        loadAd(activity,frameLayout,adId,null,type);
 
-    }
+    /**
+     *     showNativeAd(activity,frameLayout,nativeAd);
+     * @param activity
+     * @param adId
+     * @param type
+     * @param nativeAdLoadedListener
+     */
+    public void loadAd(Activity activity, String adId , int type, NativeAd.NativeAdLoadedListener nativeAdLoadedListener,AdListener adListener) {
+        this.type = type;
 
+        NativeAdLoader.Builder builder = new NativeAdLoader.Builder(activity, adId);
+        builder.setNativeAdLoadedListener(nativeAdLoadedListener).setAdListener(adListener);
 
-    public void loadAd(Activity activity, FrameLayout frameLayout,int type) {
-        loadAd(activity,frameLayout,"testy63txaom86",null,type);
+        NativeAdConfiguration adConfiguration = new NativeAdConfiguration.Builder()
+                .setChoicesPosition(NativeAdConfiguration.ChoicesPosition.BOTTOM_RIGHT) // Set custom attributes.
+                .build();
+
+        NativeAdLoader nativeAdLoader = builder.setNativeAdOptions(adConfiguration).build();
+        nativeAdLoader.loadAd(new AdParam.Builder().build());
 
     }
 
@@ -62,7 +74,7 @@ public class HuaweiNativeAd {
     }
     private NativeAd globalNativeAd;
 
-    private void showNativeAd(Activity activity, FrameLayout frameLayout, NativeAd nativeAd) {
+    public void showNativeAd(Activity activity, FrameLayout frameLayout, NativeAd nativeAd) {
         // Destroy the original native ad.
         if (null != globalNativeAd) {
             globalNativeAd.destroy();

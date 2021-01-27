@@ -60,9 +60,41 @@ public class GoogleNativeAd {
         adLoader.loadAd(new AdRequest.Builder().build());
     }
 
-    public void init(Activity activity, TemplateView template) {
-        init(activity,template,activity.getString(R.string.google_test_nativead));
+    /**
+     *                          if (loadAdError.getCode()==3){
+     *                             template.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,1));
+     *                          }
+     * @param activity
+     * @param template
+     * @param code
+     * @param adListener
+     */
 
+    public void init(Activity activity, TemplateView template, String code,AdListener adListener) {
+
+        AdLoader adLoader = new AdLoader.Builder(activity, code)
+                .forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+                    @Override
+                    public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
+                        // Show the ad.
+                        NativeTemplateStyle styles = new
+                                NativeTemplateStyle.Builder().withMainBackgroundColor(new ColorDrawable(activity.getResources().getColor(R.color.colorf2f2f2))).build();
+
+                        template.setStyles(styles);
+                        template.setNativeAd(unifiedNativeAd);
+                        template.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+
+                    }
+
+                })
+                .withAdListener(adListener)
+                .withNativeAdOptions(new NativeAdOptions.Builder()
+                        // Methods in the NativeAdOptions.Builder class can be
+                        // used here to specify individual options settings.
+                        .build())
+                .build();
+
+        adLoader.loadAd(new AdRequest.Builder().build());
     }
 
 }

@@ -12,15 +12,28 @@ import com.huawei.hms.ads.banner.BannerView;
 import com.jz.dddad.OnAdErrorAndClosed;
 
 public class HuaweiHengFUAD {
+    /**
+     * 自定义回调
+     * @param adFrameLayout
+     * @param context
+     * @param adid
+     * @param adListener
+     */
+    public void getBannerView(FrameLayout adFrameLayout, Context context, String adid,AdListener adListener){
 
-    public void getBannerView(FrameLayout adFrameLayout, Context context){
-        getBannerView(adFrameLayout,context,"testw6vs28auh3",null);
+        BannerView bannerView = new BannerView(context);
+        // Set an ad slot ID.
+        bannerView.setAdId(adid);
+        // Set the background color and size based on user selection.
+        BannerAdSize adSize = BannerAdSize.BANNER_SIZE_320_50;
+        bannerView.setBannerAdSize(adSize);
+
+        bannerView.setBackgroundColor(Color.WHITE);
+        adFrameLayout.addView(bannerView);
+        bannerView.setAdListener(adListener);
+        bannerView.setBannerRefresh(30);
+        bannerView.loadAd(new AdParam.Builder().build());
     }
-
-    public void getBannerView(FrameLayout adFrameLayout, Context context, OnAdErrorAndClosed adErrorAndClosed){
-        getBannerView(adFrameLayout,context,"testw6vs28auh3",adErrorAndClosed);
-    }
-
 
     public void getBannerView(FrameLayout adFrameLayout, Context context, String adid,OnAdErrorAndClosed adErrorAndClosed){
 
